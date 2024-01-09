@@ -1,0 +1,10 @@
+{
+  "scripts" : {
+    "start" : "node.server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "jshint": "^2.13.6",
+    "mysql2": "^3.7.0"
+  }
+}
