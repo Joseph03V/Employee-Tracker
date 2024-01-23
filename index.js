@@ -1,7 +1,7 @@
-const {prompt,Separator} = require('inquirer')
-const consoleTable = require('console.table')
+const {prompt} = require('inquirer')
+/* const consoleTable = require('console.table') */
 require('dotenv').config()
-const {menu,addEmployee,updateRole,addRole,AddDepartment, addDepartment} = require('./lib/prompt')
+const {menu,addEmployee,updateRole,addRole,addDepartment,} = require('./lib/prompt')
 const {getEmployees,getRoles,getDepartments} = require('./lib/query')
 const db = require("./config/connection")
 
