@@ -1,5 +1,5 @@
-const {prompt} = require('inquirer')
-const consoleTable = require('console.table')
+const {prompt, Separator} = require('inquirer')
+const cTable = require('console.table')
 require('dotenv').config()
 const {menu,addEmployee,updateRole,addRole,addDepartment,} = require('./lib/prompt')
 const {getEmployees,getRoles,getDepartments} = require('./lib/query')
@@ -7,49 +7,44 @@ const db = require("./config/connection")
 
 
 async function promptMenu() {
-    const answer = await prompt(menu)
-    switch(answer.menu) {
-        case "View All Departments":
-            const departments = await getDepartments()
-            console.table(departments)
-            promptMenu()
-            break;
-            
-        case "View All Roles":
-            const roles = await getRoles()
-            console.table(roles)
-            promptMenu()
-            break;
-
-        case "View All Employees":
-            const employees = await getEmployees()
-            console.table(employees)
-            promptMenu()
-            break;
-
-        case "Add Department":
-            await addDepartment()
-            promptMenu()
-            break;
-
-        case "Add Role":
-            await addRole()
-            promptMenu()
-            break;
-
-        case "Add Employee":
-            await addEmployee()
-            promptMenu()
-            break;
-
-        case "Update Employee Role":
-            await updateRole()
-            promptMenu()
-            break;
-
-        default: process.exit()
+    const answer = await prompt(menu);
+    switch (answer.menu) {
+      case "View All Employee":
+        const employees = await getEmployees();
+        console.table(employees);
+        promptMenu();
+        break;
+      case "Add Employee":
+        await newEmployee();
+        promptMenu();
+        break;
+      case "Update Employee Role":
+        await employeeUptate();
+        promptMenu();
+        break;
+      case "View All Roles":
+        const roles = await getAllRoles();
+        console.table(roles);
+        promptMenu();
+        break;
+      case "Add Role":
+        await newRole();
+        promptMenu();
+        break;
+      case "View All Departments":
+        const deparments = await getAllDepartments();
+        console.table(deparments);
+        promptMenu();
+        break;
+      case "Add Department":
+        await newDepartment();
+        promptMenu();
+        break;
+  
+      default:
+        process.exit();
     }
-}
+  };
 
 
 async function newDepartment() {
@@ -97,5 +92,5 @@ async function employeeUptate() {
 }
 
 
-
+console.log('Welcome to your employee Manager!')
 promptMenu();
